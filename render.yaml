@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ocr-webapp
+    env: python
+    buildCommand: |
+      apt-get update && \
+      apt-get install -y tesseract-ocr tesseract-ocr-ben && \
+      pip install -r requirements.txt
+    startCommand: python app.py
+    plan: free
+    envVars:
+      - key: FLASK_ENV
+        value: production
